@@ -29,9 +29,12 @@ const Button = ({ active, theme: { mainColor } }) => {
   };
 
   // Define hover/focus states
+  [":hover", ":focus"].forEach(
+    value => (style[value] = { background: darken(0.1, buttonColor)})
+  );
 
   return style;
 };
 
 // Return a styled Button component
-export default createComponent(Button, "button");
+export default createComponent(Button, "button", ["onClick", "value"]);

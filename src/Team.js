@@ -5,6 +5,7 @@ import { createComponent } from "react-fela";
 import { ellipsis, readableColor, transparentize } from "polished";
 
 // Import generic style objects
+import { cellPadding, hideSmall } from "./LeagueTable";
 
 // Create a styled <tr> for each team
 const TeamStyles = ({ pos, theme: { mainColor } }) => {
@@ -45,7 +46,7 @@ const CellStyles = ({ truncate }) => {
 };
 
 // Create a styled <td> element
-const Cell = createComponent(combineRules(CellStyles), "td");
+const Cell = createComponent(combineRules(CellStyles, hideSmall, cellPadding), "td");
 
 const TeamComponent = ({
   pos,

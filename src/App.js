@@ -91,7 +91,19 @@ class App extends Component {
           {/* Display the teams */}
           <LeagueTable>{getTeams(this.state.teams)}</LeagueTable>
 
-          {/* Create buttons to switch the theme */}
+            {/* Create buttons to switch the theme */}
+            <ButtonGroup>
+              {SEASONS.map(season => (
+                <Button
+                  active={this.state.mainColor === season.color}
+                  key={season.name}
+                  value={season.color}
+                  onClick={this.setMainColor}
+                >
+                  {season.name}
+                </Button>
+              ))}
+            </ButtonGroup>
 
           </Layout>
         </ThemeProvider>

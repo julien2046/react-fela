@@ -11,10 +11,12 @@ export const cellPadding = () => ({});
 export const hideSmall = ({ hideSmall }) => ({});
 
 // Define styles for the league table
-const LeagueTableStyles = () => ({
+const LeagueTableStyles = ({ theme: {mainColor} }) => ({
   background: 'white',
+  border: `0.1em solid ${mainColor}`,
   borderBottom: 0,
   borderCollapse: 'collapse',
+  boxShadow: `0 5px ${darken(0.2, mainColor)}`,
   marginBottom: 'calc(5px + 1em)',
   tableLayout: 'fixed',
   textAlign: 'center',

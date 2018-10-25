@@ -5,10 +5,17 @@ import { createComponent } from "react-fela";
 import { darken, lighten, readableColor, getLuminance } from "polished";
 
 // Create a reusable style for cell padding on <th> and <td> elements
-export const cellPadding = () => ({});
+export const cellPadding = () => ({
+  padding: '0.5em'
+});
 
 // Create a reusable style for hiding columns on smaller screens
-export const hideSmall = ({ hideSmall }) => ({});
+export const hideSmall = ({ hideSmall }) => ({
+  display: hideSmall ? 'none' : undefined,
+  "@media (min-width: 600px)" : {
+    display: 'table-cell'
+  }
+});
 
 // Define styles for the league table
 const LeagueTableStyles = ({ theme: {mainColor} }) => ({
@@ -46,20 +53,20 @@ const HeadingStyles = ({ hideSmall, theme: { mainColor }, width }) => {
   return style;
 };
 
-const Heading = createComponent(HeadingStyles, "th");
+const Heading = createComponent(combineRules(cellPadding, hideSmall, HeadingStyles), "th");
 
 // Create a styled <th> element
 const LeagueTableComponent = props => (
   <LeagueTable>
     <thead>
       <tr>
-        <Heading>Pos</Heading>
+        <Heading width={3}>Pos</Heading>
         <Heading>Name</Heading>
-        <Heading>W</Heading>
-        <Heading>D</Heading>
-        <Heading>L</Heading>
-        <Heading>GD</Heading>
-        <Heading>Pts</Heading>
+        <Heading hideSmall width={2}>W</Heading>
+        <Heading hideSmall width={2}>D</Heading>
+        <Heading hideSmall width={2}>L</Heading>
+        <Heading hideSmall width={3}>GD</Heading>
+        <Heading width={3}>Pts</Heading>
       </tr>
     </thead>
     <tbody>{props.children}</tbody>

@@ -28,7 +28,23 @@ const LeagueTableStyles = ({ theme: {mainColor} }) => ({
 const LeagueTable = createComponent(LeagueTableStyles, "table");
 
 // Style <th> elements
-const HeadingStyles = ({ hideSmall, theme: { mainColor }, width }) => {};
+const HeadingStyles = ({ hideSmall, theme: { mainColor }, width }) => {
+  let background = lighten(0.2, mainColor);
+
+  if (getLuminance(background) > 0.5) {
+    background = darken(0.2, mainColor);
+  }
+
+  const style = {
+    background,
+    color: readableColor(background),
+    textTransform: 'uppercase',
+    transition: 'all 0.5s ease-out',
+    width: width ? `${width}em` : undefined
+  };
+
+  return style;
+};
 
 const Heading = createComponent(HeadingStyles, "th");
 

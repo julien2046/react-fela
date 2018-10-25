@@ -89,6 +89,7 @@ class App extends Component {
           <h1>London 5-a-side Tournament</h1>
 
           {/* Display the teams */}
+          <LeagueTable>{getTeams(this.state.teams)}</LeagueTable>
 
           {/* Create buttons to switch the theme */}
 

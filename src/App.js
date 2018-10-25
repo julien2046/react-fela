@@ -19,6 +19,9 @@ import TEAM_DATA from "./teamData";
 import SEASONS from "./seasons";
 
 // Create a renderer for Fela
+const renderer = createRenderer({
+  plugins: [prefixer(), fallbackValue()]
+});
 
 // Create a sorting function for the teams
 const sortTeams = (a, b) => {
@@ -75,17 +78,23 @@ class App extends Component {
   render() {
     return (
       // Supply the Fela provider to the application
-      <div>
+      <Provider renderer={renderer}>
+
         {/* Pass the theme provider to the application */}
+        <ThemeProvider theme={{ mainColor: this.state.mainColor }}>
 
-        {/* Define a core layout for the application  */}
+          {/* Define a core layout for the application  */}
+          <Layout>
 
-        <h1>London 5-a-side Tournament</h1>
+          <h1>London 5-a-side Tournament</h1>
 
-        {/* Display the teams */}
+          {/* Display the teams */}
 
-        {/* Create buttons to switch the theme */}
-      </div>
+          {/* Create buttons to switch the theme */}
+
+          </Layout>
+        </ThemeProvider>
+      </Provider>
     );
   }
 }

@@ -9,13 +9,23 @@ import { ellipsis, readableColor, transparentize } from "polished";
 // Create a styled <tr> for each team
 const TeamStyles = ({ pos, theme: { mainColor } }) => {
   // Define base styles
-  let style = {};
+  let style = {
+    background: pos % 2 === 1 ? transparentize(0.9, mainColor) : undefined,
+    transition: "all 0.5s ease-out"
+  };
 
   // If the team has won the league, style with the theme colours
+  if (pos === 1) {
+    style = {
+      ...style,
+      background: mainColor,
+      color: readableColor(mainColor),
+      fontWeight: "bold"
+    };
+  }
 
   return style;
 };
-
 // Create a styled <tr> element
 const Team = createComponent(TeamStyles, "tr");
 
@@ -25,6 +35,11 @@ const CellStyles = ({ truncate }) => {
   let style = {};
 
   // If this cell should be truncated, apply ellipsis stylings
+  if (truncate) {
+    style = {
+      ...ellipsis("100%")
+    };
+  }
 
   return style;
 };

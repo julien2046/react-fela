@@ -11,7 +11,16 @@ export const cellPadding = () => ({});
 export const hideSmall = ({ hideSmall }) => ({});
 
 // Define styles for the league table
-const LeagueTableStyles = () => ({});
+const LeagueTableStyles = () => ({
+  background: 'white',
+  borderBottom: 0,
+  borderCollapse: 'collapse',
+  marginBottom: 'calc(5px + 1em)',
+  tableLayout: 'fixed',
+  textAlign: 'center',
+  transition: 'all 0.5s ease-out',
+  width: '100%'
+});
 
 // Create a styled table for the league table
 const LeagueTable = createComponent(LeagueTableStyles, "table");
